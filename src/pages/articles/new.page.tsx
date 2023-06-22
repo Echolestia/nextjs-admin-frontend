@@ -180,7 +180,7 @@ const ArticleForm: React.FC = () => {
                 Reset
               </Button>
               <Form.Item>
-                <Button type="primary" htmlType="submit" className="inline">
+                <Button id="createArticleButton" type="primary" htmlType="submit" className="inline">
                   Submit
                 </Button>
               </Form.Item>

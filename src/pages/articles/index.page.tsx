@@ -152,9 +152,9 @@ const ArticlesPage: React.FC = () => {
               </div>
             </div>
           ) : articles.length === 0 ? (
-            <div className="flex justify-center align-middle">
+            <div id="noArticlesTextContainer" className="flex justify-center align-middle">
               <div>
-                <h1>You have no articles, please create a new article!</h1>
+                <h1 id="noArticlesText">You have no articles, please create a new article!</h1>
               </div>
             </div>
           ) : (
