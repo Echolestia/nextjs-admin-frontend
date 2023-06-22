@@ -7,9 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "cucumber-js"
+    "test": "chmod +x ./node_modules/.bin/cucumber-js && ./node_modules/.bin/cucumber-js"
   },
   "dependencies": {
+    "@cucumber/cucumber": "^9.1.2",
     "@ant-design/icons": "^5.1.4",
     "@babel/runtime": "^7.22.5",
     "@types/node": "20.2.1",
