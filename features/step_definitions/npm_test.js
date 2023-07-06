@@ -25,45 +25,22 @@ When("the admin click on the 'View Articles' tab", async () => {
   console.log("Tab clicked successfully.");
 });
 
-When("the admin deletes all articles", async () => {
-  // Selector for delete buttons. Adjust this based on your actual page structure and classes.
-  const deleteButtonsSelector = '.delete-button-class';
-  // Selector for the 'Yes' button in the confirmation pop-up
-  const confirmPopupYesButtonSelector = '.confirm-popup-yes-button-class';
+//modify when the app is modify such that the article page is empty.
+Then("the admin should see the text 'You have no articles, please create a new article!'", async () => {
+  const articlesUrl = "https://admindashboard-xnabw36hha-as.a.run.app/articles"; // Replace with your URL
+  await page.goto(articlesUrl, { waitUntil: 'networkidle0', timeout: 10000 });
 
-  // Wait for all the delete buttons to be loaded
-  await page.waitForSelector(deleteButtonsSelector);
+  // Wait a bit before getting page content
+  await page.waitForTimeout(3000);
 
-  // Get all the delete buttons on the page
-  let deleteButtons = await page.$$(deleteButtonsSelector);
+  const pageContent = await page.content(); // gets all the content in the page
 
-  // Repeat this loop until there are no more delete buttons on the page
-  while (deleteButtons.length > 0) {
-    // Click the first delete button
-    await deleteButtons[0].click();
+  // Normalize the page content to remove leading/trailing whitespaces
+  const normalizedPageContent = pageContent.trim();
 
-    // Wait for the confirmation pop-up to appear and click 'Yes'
-    await page.waitForSelector(confirmPopupYesButtonSelector);
-    await page.click(confirmPopupYesButtonSelector);
-
-    // Wait for the delete operation to finish (you may adjust this timeout based on your app behaviour)
-    await page.waitForTimeout(2000);
-
-    // Refresh the list of delete buttons
-    deleteButtons = await page.$$(deleteButtonsSelector);
+  if (!normalizedPageContent.includes('You have no articles, please create a new article!')) {
+    throw new Error('The expected text does not exist!');
   }
 });
 
-Then("the admin should see a list of all the articles that all admins have added to the page", async () => {
-  const articlesUrl = "https://admindashboard-xnabw36hha-as.a.run.app/articles";
-
-  // Navigate to the page and wait for it to load
-  await page.goto(articlesUrl, { waitUntil: 'networkidle0', timeout: 10000 });
-
-  //await page.waitForNavigation();
-  expect(await page.url()).to.equal(articlesUrl);
-
-  // Close the browser after the test
-  browser.close();
-});
 
