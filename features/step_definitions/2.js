@@ -4,7 +4,7 @@ const puppeteer = require("puppeteer");
 
 let browser, page;
 
-//1
+//2
 Given("an admin lands in the admin dashboard for the first time", async () => {
   browser = await puppeteer.launch();
   page = await browser.newPage();
@@ -23,35 +23,6 @@ When("the admin click on the 'View Articles' tab", async () => {
   console.log("Clicking on View Articles tab...");
   await page.click(articlesTabSelector);
   console.log("Tab clicked successfully.");
-});
-
-When("the admin deletes all articles", async () => {
-  // Selector for delete buttons. Adjust this based on your actual page structure and classes.
-  const deleteButtonsSelector = '.delete-button-class';
-  // Selector for the 'Yes' button in the confirmation pop-up
-  const confirmPopupYesButtonSelector = '.confirm-popup-yes-button-class';
-
-  // Wait for all the delete buttons to be loaded
-  await page.waitForSelector(deleteButtonsSelector);
-
-  // Get all the delete buttons on the page
-  let deleteButtons = await page.$$(deleteButtonsSelector);
-
-  // Repeat this loop until there are no more delete buttons on the page
-  while (deleteButtons.length > 0) {
-    // Click the first delete button
-    await deleteButtons[0].click();
-
-    // Wait for the confirmation pop-up to appear and click 'Yes'
-    await page.waitForSelector(confirmPopupYesButtonSelector);
-    await page.click(confirmPopupYesButtonSelector);
-
-    // Wait for the delete operation to finish (you may adjust this timeout based on your app behaviour)
-    await page.waitForTimeout(2000);
-
-    // Refresh the list of delete buttons
-    deleteButtons = await page.$$(deleteButtonsSelector);
-  }
 });
 
 Then("the admin should see a list of all the articles that all admins have added to the page", async () => {

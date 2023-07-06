@@ -1,4 +1,4 @@
-const { Given, When, Then } = require('cucumber');
+const { Given, When, Then, Before, After } = require('@cucumber/cucumber');
 const { expect } = require('chai');
 const puppeteer = require('puppeteer');
 
@@ -17,7 +17,7 @@ After(async () => {
 
 // #1 Scenario: Viewing articles but no articles were added
 Given('an admin lands in the admin dashboard for the first time', async () => {
-  await page.goto('http://localhost:3000');
+  await page.goto('https://admindashboard-xnabw36hha-as.a.run.app/chat');
 });
 
 Given('is in the \'Chat\' tab', async () => {
@@ -40,7 +40,7 @@ Then('the admin should see the text \'You have no articles, please create a new 
 
 // #2 Scenario: Viewing 'Articles' tab with articles added
 Given('an admin lands in the admin dashboard for the first time', async () => {
-  await page.goto('http://localhost:3000');
+  await page.goto('https://admindashboard-xnabw36hha-as.a.run.app/chat');
 });
 
 Given('is in the \'Chat\' tab', async () => {
@@ -61,9 +61,9 @@ Then('the admin should see a list of all the articles that all admins have added
 });
 
 
-// #3 Scenario: Opening one of the articles 
+// #3 Scenario: Opening one of the articles
 Given('an admin is in the \'View Articles\' page of the admin dashboard', async () => {
-    await page.goto('http://localhost:3000/articles');
+    await page.goto('https://admindashboard-xnabw36hha-as.a.run.app/chat');
     originalTabsCount = (await browser.pages()).length;
 });
 
@@ -83,7 +83,7 @@ Then('the admin is redirected to the article\'s original URL in a new browser ta
 
 // #4 Scenario: Accessing the page to create articles
 Given('an admin is in the \'Chat\' tab of the admin dashboard', async () => {
-  await page.goto('http://localhost:3000/chat');
+  await page.goto('https://admindashboard-xnabw36hha-as.a.run.app/chat');
 });
 
 When('the admin hovers over the \'Articles\' tab', async () => {
