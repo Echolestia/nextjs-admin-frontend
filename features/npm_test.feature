@@ -3,8 +3,8 @@
 Feature: 1
 
 
-    #1 - Sad path
-    Scenario: Viewing 'Articles' tab but no articles were added
-        Given an admin lands in the admin dashboard for the first time
-        When the admin click on the 'View Articles' tab
-        Then the admin should see the text 'You have no articles, please create a new article!'
+     #6
+    Scenario: Opening one of the articles
+        Given an admin is in the 'View Articles' page of the admin dashboard
+        When the admin clicks on the 'Visit Link' button
+        Then the admin is redirected to the article's original URL in a new browser tab

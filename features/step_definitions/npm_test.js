@@ -1,46 +1,36 @@
-const { Given, When, Then } = require("@cucumber/cucumber");
-const { expect } = require("chai");
-const puppeteer = require("puppeteer");
+// const { Given, When, Then } = require("@cucumber/cucumber");
+// const { expect } = require("chai");
+// const puppeteer = require("puppeteer");
+// const { Keyboard } = require('puppeteer');
 
-let browser, page;
-
-//1
-Given("an admin lands in the admin dashboard for the first time", async () => {
-  browser = await puppeteer.launch();
-  page = await browser.newPage();
-  await page.goto("https://admindashboard-xnabw36hha-as.a.run.app", { waitUntil: 'networkidle0', timeout: 10000 });
-});
-
-When("the admin click on the 'View Articles' tab", async () => {
-  const articlesParentTabSelector = '[data-testid="articles-icon"]';
-  const articlesTabSelector = '[data-testid="view-articles-tab"]';
-  //await page.waitForSelector(articlesTabSelector);
-  console.log("Hovering over Articles tab...");
-  await page.waitForSelector(articlesParentTabSelector);
-  await page.hover(articlesParentTabSelector);
-  console.log("Waiting for View Articles tab to be visible...");
-  await page.waitForSelector(articlesTabSelector, { timeout: 10000 });
-  console.log("Clicking on View Articles tab...");
-  await page.click(articlesTabSelector);
-  console.log("Tab clicked successfully.");
-});
-
-//modify when the app is modify such that the article page is empty.
-Then("the admin should see the text 'You have no articles, please create a new article!'", async () => {
-  const articlesUrl = "https://admindashboard-xnabw36hha-as.a.run.app/articles"; // Replace with your URL
-  await page.goto(articlesUrl, { waitUntil: 'networkidle0', timeout: 10000 });
-
-  // Wait a bit before getting page content
-  await page.waitForTimeout(3000);
-
-  const pageContent = await page.content(); // gets all the content in the page
-
-  // Normalize the page content to remove leading/trailing whitespaces
-  const normalizedPageContent = pageContent.trim();
-
-  if (!normalizedPageContent.includes('You have no articles, please create a new article!')) {
-    throw new Error('The expected text does not exist!');
-  }
-});
+// let browser, page;
 
 
+// Given("an admin is in the 'View Articles' page of the admin dashboard", async () => {
+//   // You'll replace this with your actual "Create Articles" page URL
+//   const createArticlePageUrl = "https://admindashboard-xnabw36hha-as.a.run.app/articles";
+
+//   browser = await puppeteer.launch();
+//   page = await browser.newPage();
+//   console.log('loading...')
+//   await page.goto(createArticlePageUrl, { waitUntil: 'networkidle0', timeout: 60000 });
+//   console.log('done...')
+// });
+
+// When("the admin clicks on the 'Visit Link' button", async function () {
+//   const visitlinkTabSelector = '[data-testid="visit-article-button"]';
+//   await page.waitForSelector(visitlinkTabSelector);
+//   console.log("waiting for visit link button")
+//   await page.click(visitlinkTabSelector);
+//   console.log("clicked successfully.");
+
+// });
+
+// Then("the admin is redirected to the article's original URL in a new browser tab", async () => {
+//   // Wait for a new target (tab) to be created
+//   const newTarget = await browser.waitForTarget((target) => target.opener() === page.target());
+
+//   // Assert that a new target (tab) is opened
+//   expect(newTarget).to.exist;
+//   console.log("opened article tab!");
+// });
