@@ -73,6 +73,7 @@ const SignupPage: React.FC = () => {
               type="primary"
               htmlType="submit"
               className="signup-form-button w-full"
+              data-testid="signup-button"
             >
               Sign Up
             </Button>

@@ -9,7 +9,14 @@ Given("an admin lands in the admin dashboard and clicks on 'Chat' button", async
     console.log('running 7')
     browser = await puppeteer.launch({headless:false});
     page = await browser.newPage();
-    await page.goto('https://admindashboard-xnabw36hha-as.a.run.app');
+    await page.goto('http://localhost:3000/login',{ waitUntil: 'networkidle0', timeout: 60000 });  // replace with your login/signup page url
+    await page.type('#normal_login_email', 'admin');
+    await page.type('#normal_login_password', 'admin');
+    const loginButtonSelector = '[data-testid="login-button"]'; // replace with your button selector
+    await Promise.all([
+        page.click(loginButtonSelector), // Triggers navigation
+        page.waitForNavigation({ waitUntil: 'networkidle0' })  // Waits until navigation finishes
+    ]);
     console.log("Current Page URL: ", await page.url());
     const submitSelector = '[data-testid="chat-tab"]';
     await page.waitForSelector(submitSelector);

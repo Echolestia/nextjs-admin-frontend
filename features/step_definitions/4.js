@@ -9,7 +9,7 @@ let browser, page;
 Given("admin is in the create article page", async () => {
   console.log('running 4')
   // You'll replace this with your actual "Create Articles" page URL
-  const createArticlePageUrl = "https://admindashboard-xnabw36hha-as.a.run.app/articles/new";
+  const createArticlePageUrl = "http://localhost:3000/articles/new";
 
   browser = await puppeteer.launch({headless:false});
   page = await browser.newPage();
@@ -37,7 +37,7 @@ When('admin clicks submit', async () => {
 });
 
 Then("admin should be in the view articles page", async () => {
-  const createArticlePageUrl = "https://admindashboard-xnabw36hha-as.a.run.app/articles/new";
+  const createArticlePageUrl = "http://localhost:3000/articles/new";
 
 
   expect(await page.url()).to.equal(createArticlePageUrl);

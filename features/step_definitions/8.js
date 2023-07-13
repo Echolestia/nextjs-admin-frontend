@@ -8,7 +8,21 @@ Given("the admin is in the 'Chat' page", {timeout: 60 * 1000}, async function ()
   console.log('running 8')
     browser = await puppeteer.launch({headless: false});
     page = await browser.newPage();
-    await page.goto('http://localhost:3000/chat'); // replace string with the actual URL of the chat page on your site
+    await page.goto('http://localhost:3000/login',{ waitUntil: 'networkidle0', timeout: 60000 });  // replace with your login/signup page url
+    await page.type('#normal_login_email', 'admin');
+    await page.type('#normal_login_password', 'admin');
+    const loginButtonSelector = '[data-testid="login-button"]'; // replace with your button selector
+    await Promise.all([
+        page.click(loginButtonSelector), // Triggers navigation
+        page.waitForNavigation({ waitUntil: 'networkidle0' })  // Waits until navigation finishes
+    ]);
+    console.log("Current Page URL: ", await page.url());
+    const submitSelector = '[data-testid="chat-tab"]';
+    await page.waitForSelector(submitSelector);
+    const navigationPromise = page.waitForNavigation(); // Start listening to the navigation event
+    await page.click(submitSelector);
+    await navigationPromise; // Wait for the navigation to complete
+    console.log("Current Page URL: ", await page.url());
   });
 
   When('the admin sees a list of active chats and click on one of the chat', {timeout: 60 * 1000}, async function () {

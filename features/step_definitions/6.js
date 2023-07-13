@@ -9,7 +9,7 @@ let browser, page;
 Given("an admin is in the 'View Articles' page of the admin dashboard", async () => {
   console.log('running 6')
   // You'll replace this with your actual "Create Articles" page URL
-  const createArticlePageUrl = "https://admindashboard-xnabw36hha-as.a.run.app/articles";
+  const createArticlePageUrl = "http://localhost:3000/articles";
 
   browser = await puppeteer.launch({headless:false});
   page = await browser.newPage();

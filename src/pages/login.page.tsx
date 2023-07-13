@@ -72,6 +72,7 @@ const LoginPage: React.FC = () => {
               type="primary"
               htmlType="submit"
               className="login-form-button w-full"
+              data-testid="login-button"
             >
               Log in
             </Button>
