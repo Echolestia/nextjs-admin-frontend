@@ -22,6 +22,10 @@ const ContactsBar = ({ contacts, setSelectedChatId, selectedChatId }: any) => {
                 }`,
               }}
             >
+              <div
+               data-testid={`chatroom-${chatroom.id}`}
+               style={{ display: "none" }}
+              />
               <List.Item.Meta
                 avatar={<Avatar size={"large"} icon={<UserOutlined />} />}
                 title={

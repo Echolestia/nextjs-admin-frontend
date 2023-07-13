@@ -5,8 +5,8 @@ const puppeteer = require("puppeteer");
 let browser, page;
 
 //2
-Given("admin goes to create article page", async () => {
-  browser = await puppeteer.launch();
+Given("admin goes to create article page",  {timeout: 60 * 1000}, async () => {
+  browser = await puppeteer.launch({headless:false});
   page = await browser.newPage();
   await page.goto("https://admindashboard-xnabw36hha-as.a.run.app/articles/new", { waitUntil: 'networkidle0', timeout: 60000 });
 });

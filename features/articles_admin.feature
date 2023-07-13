@@ -6,7 +6,7 @@ Feature: Admin Dashboard - Articles
     #1 - Sad path (tested)
     Scenario: Viewing 'Articles' tab but no articles were added
         Given an admin lands in the admin dashboard for the first time
-        When the admin click on the 'View Articles' tab
+        When the admin click on the 'View Articles' tab for the first time
         Then the admin should see the text 'You have no articles, please create a new article!'
 
     #2 (tested)
@@ -23,13 +23,13 @@ Feature: Admin Dashboard - Articles
     #4 (tested)
     Scenario: Creating article
         Given admin is in the create article page
-        Given admin fill in all required fields
+        When admin fill in all required fields
         When admin clicks submit
         Then admin should be in the view articles page
 
     #5 - Happy path(tested)
     Scenario: Viewing 'Articles' tab with articles added
-        Given an admin lands in the admin dashboard for the first time
+        Given an admin lands in the admin dashboard
         When the admin click on the 'View Articles' tab
         Then the admin should see a list of all the articles that all admins have added to the page
 

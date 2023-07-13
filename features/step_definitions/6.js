@@ -10,7 +10,7 @@ Given("an admin is in the 'View Articles' page of the admin dashboard", async ()
   // You'll replace this with your actual "Create Articles" page URL
   const createArticlePageUrl = "https://admindashboard-xnabw36hha-as.a.run.app/articles";
 
-  browser = await puppeteer.launch();
+  browser = await puppeteer.launch({headless:false});
   page = await browser.newPage();
   console.log('loading...')
   await page.goto(createArticlePageUrl, { waitUntil: 'networkidle0', timeout: 60000 });
@@ -33,4 +33,8 @@ Then("the admin is redirected to the article's original URL in a new browser tab
   // Assert that a new target (tab) is opened
   expect(newTarget).to.exist;
   console.log("opened article tab!");
+});
+
+After(async function() {
+  await browser.close();
 });

@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "cucumber-js"
+    "test": "./node_modules/.bin/cucumber-js"
   },
   "dependencies": {
     "@ant-design/icons": "^5.1.4",

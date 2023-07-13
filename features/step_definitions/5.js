@@ -5,8 +5,8 @@ const puppeteer = require("puppeteer");
 let browser, page;
 
 //2
-Given("an admin lands in the admin dashboard for the first time", async () => {
-  browser = await puppeteer.launch();
+Given("an admin lands in the admin dashboard", async () => {
+  browser = await puppeteer.launch({headless:false});
   page = await browser.newPage();
   await page.goto("https://admindashboard-xnabw36hha-as.a.run.app", { waitUntil: 'networkidle0', timeout: 10000 });
 });

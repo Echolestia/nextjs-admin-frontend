@@ -1,10 +1,12 @@
-# This file is responsible for testing if a user's npm is working
+# # This file is responsible for testing if a user's npm is working
+# Feature: Chat feature
 
-Feature: 1
+#     #2
+#     Scenario: Opening one of the chats
+#         Given the admin is in the 'Chat' page
+#         When the admin sees a list of active chats and click on one of the chat
+#         Then the admin should see the chat history with the user and their profile
 
 
-     #6
-    Scenario: Opening one of the articles
-        Given an admin is in the 'View Articles' page of the admin dashboard
-        When the admin clicks on the 'Visit Link' button
-        Then the admin is redirected to the article's original URL in a new browser tab
+
+
