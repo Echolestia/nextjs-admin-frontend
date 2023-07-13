@@ -58,7 +58,7 @@ const AnalysisBar = ({
 
   return (
     <div>
-      <Title level={4}>User Profile</Title>
+      <Title data-testid='user-profile-title' level={4}>User Profile</Title>
       {userData ? (
         <List
           className="bg-white"

@@ -1,11 +1,15 @@
-const { Given, When, Then, After } = require("@cucumber/cucumber");
+const { Given, When, Then } = require("@cucumber/cucumber");
 const { expect } = require("chai");
 const puppeteer = require("puppeteer");
 
 let browser, page;
 
 
+
 Given("admin is in the create articles page", async () => {
+  console.log('running 3')
+  browser = await puppeteer.launch({headless:false});
+  page = await browser.newPage();
   // You'll replace this with your actual "Create Articles" page URL
   const createArticlePageUrl = "https://admindashboard-xnabw36hha-as.a.run.app/articles/new";
 
@@ -27,8 +31,5 @@ Then("admin will still be in the create articles page", async () => {
   expect(await page.url()).to.equal(createArticlePageUrl);
 });
 
-After(async function() {
-  await browser.close();
-});
 
 

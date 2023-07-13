@@ -1,11 +1,13 @@
-# # This file is responsible for testing if a user's npm is working
-# Feature: Chat feature
+# Feature: Admin Dashboard - Chat
+#     As a medical practitioner/professional/counsellor
+#     I want to be able to send and receieve messages and view users' profiles through the admin platform
 
-#     #2
-#     Scenario: Opening one of the chats
-#         Given the admin is in the 'Chat' page
-#         When the admin sees a list of active chats and click on one of the chat
-#         Then the admin should see the chat history with the user and their profile
+
+#     #10 - Sad path
+#     Scenario: Sending a message with 'Type your message here' field empty
+#         Given the admin is in a chat again
+#         When the admin has not input anything into 'Type your message here' field
+#         Then the admin should not be able to send a new message when clicked on 'send'
 
 
 

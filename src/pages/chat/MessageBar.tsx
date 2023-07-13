@@ -30,7 +30,7 @@ const ChatListItem = ({
     </Text>
   );
   return (
-    <div className={hidden ? "hidden" : ""}>
+    <div className={hidden ? "hidden" : ""} data-testid="chat-item">
       <div className="flex flex-row mb-2">
         <div
           className={messageClass}
@@ -67,7 +67,7 @@ const ChatInput = ({ value, onChange, onSend }: any) => {
         placeholder="Type your message here"
         value={value}
         onChange={onChange}
-        className="mr-2"
+        className="mr-2 unique-classForTesting"
         onKeyDown={(e: React.KeyboardEvent<HTMLTextAreaElement>) => {
           if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();

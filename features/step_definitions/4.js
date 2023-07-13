@@ -1,4 +1,4 @@
-const { Given, When, Then, After } = require("@cucumber/cucumber");
+const { Given, When, Then } = require("@cucumber/cucumber");
 const { expect } = require("chai");
 const puppeteer = require("puppeteer");
 const { Keyboard } = require('puppeteer');
@@ -7,6 +7,7 @@ let browser, page;
 
 
 Given("admin is in the create article page", async () => {
+  console.log('running 4')
   // You'll replace this with your actual "Create Articles" page URL
   const createArticlePageUrl = "https://admindashboard-xnabw36hha-as.a.run.app/articles/new";
 
@@ -42,6 +43,3 @@ Then("admin should be in the view articles page", async () => {
   expect(await page.url()).to.equal(createArticlePageUrl);
 });
 
-After(async function() {
-  await browser.close();
-});

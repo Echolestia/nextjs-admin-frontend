@@ -42,8 +42,8 @@ const items: MenuItem[] = [
     "chatbot-tab"
   ),
   getItem("Articles", "/articles", "9", <FileOutlined data-testid="articles-icon" />, [
-    getItem("View Articles", "/articles", "10", undefined, undefined, "view-articles-tab"),
-    getItem("Create Article", "/articles/new", "11", undefined, undefined, "create-article-tab"),
+    getItem("View Articles", "/articles", "10", <FileOutlined data-testid="view-articles-tab" />),
+    getItem("Create Article", "/articles/new", "11", <FileOutlined data-testid="create-article-tab" />),
   ],
   "articles-tab"
   ),

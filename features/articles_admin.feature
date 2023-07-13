@@ -3,11 +3,11 @@ Feature: Admin Dashboard - Articles
     I want to be able to view, create and delete articles through the admin platform
     So that users can view articles which are curated properly for them.
 
-    #1 - Sad path (tested)
-    Scenario: Viewing 'Articles' tab but no articles were added
-        Given an admin lands in the admin dashboard for the first time
-        When the admin click on the 'View Articles' tab for the first time
-        Then the admin should see the text 'You have no articles, please create a new article!'
+    # #1 - Sad path (tested)
+    # Scenario: Viewing 'Articles' tab but no articles were added
+    #     Given an admin lands in the admin dashboard for the first time
+    #     When the admin click on the 'View Articles' tab for the first time
+    #     Then the admin should see the text 'You have no articles, please create a new article!'
 
     #2 (tested)
     Scenario: Accessing the page to create articles

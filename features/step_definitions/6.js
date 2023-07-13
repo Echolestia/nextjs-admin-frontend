@@ -1,4 +1,4 @@
-const { Given, When, Then, After } = require("@cucumber/cucumber");
+const { Given, When, Then } = require("@cucumber/cucumber");
 const { expect } = require("chai");
 const puppeteer = require("puppeteer");
 const { Keyboard } = require('puppeteer');
@@ -7,6 +7,7 @@ let browser, page;
 
 
 Given("an admin is in the 'View Articles' page of the admin dashboard", async () => {
+  console.log('running 6')
   // You'll replace this with your actual "Create Articles" page URL
   const createArticlePageUrl = "https://admindashboard-xnabw36hha-as.a.run.app/articles";
 
@@ -35,6 +36,3 @@ Then("the admin is redirected to the article's original URL in a new browser tab
   console.log("opened article tab!");
 });
 
-After(async function() {
-  await browser.close();
-});
