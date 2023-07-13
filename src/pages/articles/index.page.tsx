@@ -5,9 +5,10 @@ import { Button, Card, Popconfirm, Spin, message } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 // import Meta from "antd/es/card/Meta";
 import MainLayout from "../../../components/MainLayout";
-import axios from "axios";
+import axios from "../axiosFrontend";
 import Meta from "antd/lib/card/Meta";
 import Image from "next/image";
+import { useUser } from "../../../components/UserContext";
 
 const handleUrlButton = (url: string) => {
   window.open(url, "_blank");
@@ -35,7 +36,6 @@ const ArticlesPage: React.FC = () => {
       }
     );
     setTimeout(() => {
-      console.log("test");
       setArticles(fetchedArticles);
       setIsLoading(false);
     }, 1000);
@@ -108,8 +108,9 @@ const ArticlesPage: React.FC = () => {
             okText={<span data-testid={`yes-button-${article.id}`}>Yes</span>}
             cancelText={<span data-testid={`no-button-${article.id}`}>No</span>}
           >
-            <div className="flex items-center justify-center w-8 h-8 bg-red-300 text-white rounded-full"
-            data-testid={`delete-article-button-${article.id}`}
+            <div
+              className="flex items-center justify-center w-8 h-8 bg-red-300 text-white rounded-full"
+              data-testid={`delete-article-button-${article.id}`}
             >
               <DeleteOutlined />
             </div>
