@@ -1,8 +1,9 @@
 import { Avatar, Button, Card, Input, Spin, Typography, message } from "antd";
 
+import { useEffect, useRef, useState } from "react";
 import axios from "../axiosFrontend";
-import { useEffect, useState } from "react";
 import { ADMIN_USER_ID } from "./index.page";
+import useMessages from "../../../components/useMessages";
 
 const { Text } = Typography;
 const { TextArea } = Input;
@@ -84,7 +85,7 @@ const ChatInput = ({ value, onChange, onSend }: any) => {
 
 const handleSendMessage = async (props: any) => {
   try {
-    const response = await axios.post(`/api/messages`, props, {
+    const response = await axios.post("/api/messages", props, {
       headers: {
         accept: "application/json",
         "Content-Type": "application/json",
@@ -92,20 +93,20 @@ const handleSendMessage = async (props: any) => {
     });
     message.success("Message Sent!");
   } catch (error) {
-    console.log(error);
-    message.error("Error has occured. " + error);
+    message.error(`Error has occured. ${error}`);
   }
-
-  return;
 };
 
-const MessagesBar = ({
-  selectedChatId,
-  chatRoomData,
-  fetchChatRoomData,
-  loading,
-}: any) => {
+const MessagesBar = ({ selectedChatId }: any) => {
   const [inputValue, setInputValue] = useState("");
+
+  const { messages, loading } = useMessages(selectedChatId);
+
+  // const AlwaysScrollToBottom = () => {
+  //   const elementRef = useRef<HTMLDivElement>(null);
+  //   useEffect(() => elementRef.current?.scrollIntoView());
+  //   return <div ref={elementRef} />;
+  // };
 
   if (loading) {
     return <Spin />;
@@ -119,7 +120,7 @@ const MessagesBar = ({
             className="flex-1 overflow-y-auto"
             style={{ minHeight: "70vh", maxHeight: "70vh" }}
           >
-            {chatRoomData.messages.map((chatMessage: any, index: number) => (
+            {messages.map((chatMessage: any, index: number) => (
               <ChatListItem
                 key={chatMessage.id}
                 message={chatMessage.content}
@@ -127,12 +128,14 @@ const MessagesBar = ({
                 isNotMyself={chatMessage.sender_id !== ADMIN_USER_ID}
               />
             ))}
+            {/* <AlwaysScrollToBottom /> */}
           </div>
           <div className="mt-4">
             <ChatInput
               value={inputValue}
               onChange={(e: any) => setInputValue(e.target.value)}
               onSend={() => {
+                if (!inputValue) return;
                 handleSendMessage({
                   sender_id: ADMIN_USER_ID,
                   content: inputValue,
@@ -144,7 +147,6 @@ const MessagesBar = ({
                   chat_room_id: selectedChatId,
                 });
                 setInputValue("");
-                fetchChatRoomData();
               }}
             />
           </div>
