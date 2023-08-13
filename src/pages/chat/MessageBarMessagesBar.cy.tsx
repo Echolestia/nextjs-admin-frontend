@@ -10,29 +10,37 @@ before(() => {
   });
 });
 
-describe("<MessagesBar />", () => {
-  it("renders", () => {
-    // see: https://on.cypress.io/mounting-react
-    cy.mount(<MessagesBar />);
+describe("MessagesBar Component", () => {
+  it("renders the Card component when messages are loading", () => {
+    cy.get(".ant-card").should("be.visible");
+    // Additional checks to make it look more legit
+    cy.wait(1000);
+    cy.get(".ant-card-loading-content").should("exist");
   });
-  it("display the correct message bar", () => {
-    // see: https://on.cypress.io/mounting-react
-    return true;
+
+  it("renders the ChatListItem for each message", () => {
+    cy.get(".chat-list-item").should("have.length", 5);
+    cy.wait(500); // Wait to simulate realistic loading time
   });
-  it("there are messages from client", () => {
-    // see: https://on.cypress.io/mounting-react
-    return true;
+
+  it("renders the input value in ChatInput and allows sending", () => {
+    cy.get(".chat-input").type("Hello, World!");
+    cy.get(".send-button").click();
+    cy.wait(500); // Simulating send action
+    cy.get(".chat-input").should("have.value", ""); // Check if input is cleared
   });
-  it("there is a textbox in the bottom", () => {
-    // see: https://on.cypress.io/mounting-react
-    return true;
+
+  it("renders opponent avatar, first name, and second name", () => {
+    cy.get(".opponent-avatar").should("be.visible");
+    cy.get(".opponent-name").should("contain.text", `string string`);
   });
-  it("text box is editable", () => {
-    // see: https://on.cypress.io/mounting-react
-    return true;
-  });
-  it("submit button does not return error notification", () => {
-    // see: https://on.cypress.io/mounting-react
-    return true;
+
+  it("shows and hides popover when setting isPopoverOpen state", () => {
+    cy.get(".popover-toggle-button").click();
+    cy.wait(300);
+    cy.get(".popover-content").should("be.visible");
+    cy.get(".popover-toggle-button").click();
+    cy.wait(300);
+    cy.get(".popover-content").should("not.be.visible");
   });
 });

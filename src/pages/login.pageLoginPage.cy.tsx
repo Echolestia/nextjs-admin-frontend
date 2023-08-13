@@ -70,4 +70,8 @@ describe("Login Page", () => {
     // Check if the reset password link is present
     cy.get("a#reset-password-link").should("be.visible");
   });
+
+  it("renders the register link", () => {
+    cy.get('a[href="/signup"]').should("contain.text", "register now!");
+  });
 });
